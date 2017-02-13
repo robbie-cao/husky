@@ -55,7 +55,7 @@
 // !!!IMG_A/IMG_B config MUST match defines in bim_main.c!!!
 #if !defined OAD_IMG_A_PAGE
 #define OAD_IMG_A_PAGE        1
-#define OAD_IMG_A_AREA        52
+#define OAD_IMG_A_AREA        62
 #endif
 
 #if !defined OAD_IMG_B_PAGE
@@ -63,7 +63,7 @@
 #if defined FEATURE_OAD_BIM
 #define OAD_IMG_B_PAGE        8
 #else
-#define OAD_IMG_B_PAGE        53
+#define OAD_IMG_B_PAGE        63
 #endif
 #define OAD_IMG_B_AREA       (124 - OAD_IMG_A_AREA)
 #endif
