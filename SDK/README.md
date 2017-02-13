@@ -1,0 +1,1 @@
+SDK===SDK from vendors- CC254X - TI BLE Stack v1.3.2- CC254X_V1.4.1 - TI BLE Stack v1.4.1- ISD91XX - Nuvoton ISD91XX_SDK
