@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<workspace>
+  <project>
+    <path>$WS_DIR$\Simple\BIM.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$\Simple\OTA.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$\Simple\App.ewp</path>
+  </project>
+  <project>
+    <path>$WS_DIR$\Simple\Std.ewp</path>
+  </project>
+  <batchBuild>
+    <batchDefinition>
+      <name>All</name>
+      <member>
+        <project>BIM</project>
+        <configuration>Debug</configuration>
+      </member>
+      <member>
+        <project>BIM</project>
+        <configuration>Release</configuration>
+      </member>
+      <member>
+        <project>OTA</project>
+        <configuration>Debug</configuration>
+      </member>
+      <member>
+        <project>OTA</project>
+        <configuration>Release</configuration>
+      </member>
+      <member>
+        <project>App</project>
+        <configuration>Debug</configuration>
+      </member>
+      <member>
+        <project>App</project>
+        <configuration>Release</configuration>
+      </member>
+      <member>
+        <project>Std</project>
+        <configuration>Debug</configuration>
+      </member>
+      <member>
+        <project>Std</project>
+        <configuration>Release</configuration>
+      </member>
+    </batchDefinition>
+  </batchBuild>
+</workspace>
+
+
