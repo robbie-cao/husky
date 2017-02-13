@@ -230,6 +230,7 @@ if "%target%"=="All" (
         echo Combine Bootloader + ImgA-OTA + ImgB-App
         ::Combine Bootloader + ImgA(OTA) + ImgB(App)
         Tools\srec_cat.exe Simple_BIM.hex -intel Simple_OTA.hex -intel Simple_App.hex -intel -O Simple.hex -intel -obs=16 -line-length=46
+        Tools\srec_cat.exe Simple_BIM.hex -intel Simple_Rec.hex -intel Simple_App.hex -intel -O Simple.bin -binary
         if %ERRORLEVEL% NEQ 0 goto ERROR
         echo Combine Bootloader + ImgA-OTA
         ::Combine Bootloader + ImgA(OTA)
