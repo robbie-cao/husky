@@ -54,11 +54,11 @@
  */
 
 #define BIM_IMG_A_PAGE        1     // ImgA start page
-#define BIM_IMG_A_AREA        62    // ImgA pages in total
+#define BIM_IMG_A_AREA        23    // ImgA pages in total
 #define BIM_IMG_A_AREA_0      7     // ImgA pages in BANK0
 
 #define BIM_IMG_B_PAGE        8     // ImgB start page
-#define BIM_IMG_B_AREA       (124 - BIM_IMG_A_AREA)
+#define BIM_IMG_B_AREA        88    // ImgB pages in total
 #define BIM_IMG_B_AREA_0      8     // ImgB pages in BANK0
 
 #define BIM_CRC_OSET          0x00
@@ -252,9 +252,19 @@ void main(void)
 {
   uint16 crc[2];
 
+  P1SEL &= ~(BV(0) | BV(1)); // Port 1.0/1 as GPIO
+  P1DIR |=  (BV(0) | BV(1)); // Port 1.0/1 as GPIO output
+  P1_0 = !P1_0;
+  P1_1 = !P1_1;
+#if 1
+  JumpToImageAorB = 0;
+  asm("LJMP 0x0830");
+  HAL_SYSTEM_RESET();  // Should not get here.
+#else
   JumpToImageAorB = 1;
   asm("LJMP 0x4030");
   HAL_SYSTEM_RESET();  // Should not get here.
+#endif
 
   // Prefer to run Image-B over Image-A so that Image-A does not have to invalidate itself.
   HalFlashRead(BIM_IMG_B_PAGE, BIM_CRC_OSET, (uint8 *)crc, 4);
