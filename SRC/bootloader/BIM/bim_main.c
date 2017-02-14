@@ -252,6 +252,10 @@ void main(void)
 {
   uint16 crc[2];
 
+  JumpToImageAorB = 1;
+  asm("LJMP 0x4030");
+  HAL_SYSTEM_RESET();  // Should not get here.
+
   // Prefer to run Image-B over Image-A so that Image-A does not have to invalidate itself.
   HalFlashRead(BIM_IMG_B_PAGE, BIM_CRC_OSET, (uint8 *)crc, 4);
 

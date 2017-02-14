@@ -49,8 +49,11 @@ extern uint16 Task_ProcessEvent(uint8 taskId, uint16 events);
 // The order in this table must be identical to the task initialization calls below in osalInitTask.
 const pTaskEventHandlerFn tasksArr[] =
 {
+#if !defined __NO_BLE
   LL_ProcessEvent,                                                  // task 0
+#endif
   Hal_ProcessEvent,                                                 // task 1
+#if !defined __NO_BLE
   HCI_ProcessEvent,                                                 // task 2
 #if defined ( OSAL_CBTIMER_NUM_TASKS )
   OSAL_CBTIMER_PROCESS_EVENT( osal_CbTimerProcessEvent ),           // task 3
@@ -62,7 +65,8 @@ const pTaskEventHandlerFn tasksArr[] =
   GAPRole_ProcessEvent,                                             // task 8
   GAPBondMgr_ProcessEvent,                                          // task 9
   GATTServApp_ProcessEvent,                                         // task 10
-  Task_ProcessEvent                                              // task 11
+#endif
+  Task_ProcessEvent                                                 // task 11
 };
 
 const uint8 tasksCnt = sizeof( tasksArr ) / sizeof( tasksArr[0] );
@@ -88,12 +92,15 @@ void osalInitTasks( void )
   tasksEvents = (uint16 *)osal_mem_alloc( sizeof( uint16 ) * tasksCnt);
   osal_memset( tasksEvents, 0, (sizeof( uint16 ) * tasksCnt));
 
+#if !defined __NO_BLE
   /* LL Task */
   LL_Init( taskID++ );
+#endif
 
   /* Hal Task */
   Hal_Init( taskID++ );
 
+#if !defined __NO_BLE
   /* HCI Task */
   HCI_Init( taskID++ );
 
@@ -120,6 +127,7 @@ void osalInitTasks( void )
   GAPBondMgr_Init( taskID++ );
 
   GATTServApp_Init( taskID++ );
+#endif
 
   /* Application */
   Task_Init( taskID );
