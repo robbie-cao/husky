@@ -203,7 +203,9 @@
 // First the segment with addresses as used by the program (flash mapped as upper XDATA)
 -P(CONST)XDATA_ROM_C=0x8000-0xFFFF
 //
-// Then the segment with addresses as put in the hex file (flash bank 1).
+// Then the segment with addresses as put in the hex file (flash bank 6).
+// Must match the settings in hal_startup.c for IMAGE_A/B
+// MEMCTR = (MEMCTR & 0xF8) | 0x06;
 -P(CODE)XDATA_ROM_C_FLASH=_BANK6_BEG-_BANK6_END
 //
 // Finally link these segments (XDATA_ROM_C_FLASH is the initializer segment for XDATA_ROM_C,
